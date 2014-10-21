@@ -1,0 +1,11 @@
+{
+  "name": "mean",
+  "version": "0.4.0",
+  "dependencies": {
+    "angular-bootstrap": "latest",
+    "angular-route": "latest",
+    "angular": "latest",
+    "bootstrap": "latest",
+    "angular-charts" : "latest"
+  }
+}
