@@ -7,7 +7,7 @@ var express         = require('express'),
     db              = require('./db.js');
 
 
-module.exports = function()   {
+module.exports = function () {
     
     //Initialize express app
     var app = express();
@@ -16,14 +16,13 @@ module.exports = function()   {
     if (process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));
     }
-    app.use(express.static(__dirname + '/public'));
+    //app.use(express.static('../../public'));
+    app.use('/', express.static('./public'));
     app.use(bodyParser.json());
     app.use(methodOverride());
 
 
-    //require('./server/routes/mainRoutes.js')(app);
-
-
+    require('../routes/mainRoutes.js')(app);
 
     return app;
 
