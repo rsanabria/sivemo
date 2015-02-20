@@ -2,11 +2,11 @@
     'use strict';
 
     angular
-        .module('app')
-        .factory('mainService', ['$http', mainService]);
+        .module('app.services')
+        .factory('dataService', ['$http', dataService]);
     
 
-    function mainService($http) {
+    function dataService($http) {
         var service = {
             getHola: getHola
         };

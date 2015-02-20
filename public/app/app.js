@@ -2,15 +2,8 @@
     'use strict';
 
     angular
-        .module('app', ['ngRoute']);
-/*        .config(routeConfig);
-        
-        routeConfig.$inject = ['$routeProvider'];*/
+      .module('app', ['app.core','app.services', 'app.main']);
 
- /*       function routeConfig($routeProvider) {
-            $routeProvider
-                .when('/',{ templateUrl: 'app/people/people.html', title: 'people'})
-                .when('/avengers',{ templateUrl: 'app/avengers/avengers.html', title: 'avengers'})
-                .otherwise({ redirectTo: '/' });
-        }*/
+  //configure.$inject = ['$routeProvider','routeHelperProvider'];
+  
 })();

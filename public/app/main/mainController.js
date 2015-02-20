@@ -2,14 +2,17 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('app.main')
         .controller('MainCtrl', MainCtrl);
 
-    MainCtrl.$inject = ['$scope', 'mainService'];
+    MainCtrl.$inject = ['dataService'];
 
-    function MainCtrl($scope, mainService) {
-        mainService.getHola().success(function (data) {
-            $scope.mensaje = data;
-        });
+    function MainCtrl(dataService) {
+        var vm = this;
+        dataService.getHola().then(function (mensaje) {
+          vm.hola = {mensaje : mensaje.data};
+        })
+        
+
     }
 })();

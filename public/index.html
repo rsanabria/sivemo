@@ -5,18 +5,34 @@
     
     </head>
     <body>
-        Prueba MEAN
-        <div ng-controller="MainCtrl">
-            {{mensaje}}
-        
-        </div>
-
+       <div ng-view></div>
 
         <script src="app/lib/angular/angular.min.js"></script>
         <script src="app/lib/angular-route/angular-route.min.js"></script>
-        <script src="app/app.js"></script>
-        <script src="app/services/mainService.js"></script>
-        <script src="app/main/mainController.js"></script>
+      
+      
+       <script src="app/app.js"></script>
+      
+      <script src="app/routes/routes.module.js"></script>
+      <script src="app/routes/routeHelperProvider.js"></script>
+      <script src="app/routes/routeService.js"></script>
+              
+              
+      <script src="app/services/services.module.js"></script>
+      <script src="app/services/dataService.js"></script>
+      
+      <script src="app/core/core.module.js"></script>
+       <script src="app/core/config.js"></script>
+      
+       <script src="app/main/main.module.js"></script>
+      <script src="app/main/config.routes.js"></script>
+      <script src="app/main/mainController.js"></script>
+     
+      
+      
+     
+
+       
         
         
         
