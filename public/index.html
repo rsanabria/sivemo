@@ -1,17 +1,21 @@
 <html ng-app="app">
     <head>
-
+       <link href="app/lib/toastr/toastr.css" rel="stylesheet" />
     
     
     </head>
     <body>
        <div ng-view></div>
-
+        <script src="app/lib/jquery/dist/jquery.min.js"></script>
         <script src="app/lib/angular/angular.min.js"></script>
         <script src="app/lib/angular-route/angular-route.min.js"></script>
+      <script src="app/lib/toastr/toastr.js"></script>
       
       
        <script src="app/app.js"></script>
+      
+      <script src="app/logger/logger.module.js"></script>
+      <script src="app/logger/loggerService.js"></script>
       
       <script src="app/routes/routes.module.js"></script>
       <script src="app/routes/routeHelperProvider.js"></script>
@@ -22,6 +26,7 @@
       <script src="app/services/dataService.js"></script>
       
       <script src="app/core/core.module.js"></script>
+      <script src="app/core/constants.js"></script>
        <script src="app/core/config.js"></script>
       
        <script src="app/main/main.module.js"></script>

@@ -3,10 +3,11 @@
 
     angular
         .module('app.services')
-        .factory('dataService', ['$http', dataService]);
+        .factory('dataService',  dataService);
+  dataService.$inject = ['$http', 'logger'];
     
 
-    function dataService($http) {
+    function dataService($http,logger) {
         var service = {
             getHola: getHola
         };
@@ -14,7 +15,13 @@
         return service;
 
         function getHola() {
-            return $http.get('/holaMundo');
+            return $http.get('/holaMundo')
+            .then( function(response) {
+              return response.data;
+            })
+            .catch( function(err) {
+              logger.error(err.data);
+            });
         }
     }
 })();

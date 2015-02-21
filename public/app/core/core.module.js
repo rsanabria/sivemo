@@ -8,10 +8,10 @@ angular.module('app.core', [
 /*
 * Our reusable cross app code modules
 */
-'routes'
+  'logger',
+  'routes'
 /*
 * 3rd Party modules
 */
-
 ]);
 })();
