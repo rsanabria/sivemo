@@ -3,9 +3,10 @@
 
     angular
       .module('app', [
-      'app.core',
-      'app.services',
-      'app.main'
+          'app.core',
+          'app.services',
+          'app.main',
+          'app.todo'
     ]);
   
 })();

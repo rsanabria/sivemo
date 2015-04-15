@@ -3,7 +3,7 @@ var path        = require('path'),
 
 module.exports = {
     dev : {
-        db : 'mongodb://localhost/mean',
+        db : 'mongodb://admin:sivemo14@ds061741.mongolab.com:61741/sivemo',
         roothPath : roothPath,
         port: process.env.PORT || 8080
     }

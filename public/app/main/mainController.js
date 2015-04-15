@@ -9,6 +9,7 @@
 
     function MainCtrl(dataService, logger) {
       var vm = this;
+    vm.sivemo = "Hola Sivemo";
       init();
       
       function init() {

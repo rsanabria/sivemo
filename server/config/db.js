@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 var db = mongoose.connect(config.db, function(err){
     if(err){
         console.log('\x1b[31m', 'No se pudo conectar a MongoDB!');
+        console.log(err);
     }
     else {
         console.log("Conexión a MongoDB!");
