@@ -18,8 +18,8 @@
     
 
     </div>
-                     <div ng-repeat="todo in vm.listaTodo">
-        <h1 >{{todo}}</h1>
+        <div ng-repeat="todo in vm.listaTodo">
+        <h1 ><a ng-click="vm.eliminarTodo(todo)">{{todo}}</a></h1>
     </div>
     
 
