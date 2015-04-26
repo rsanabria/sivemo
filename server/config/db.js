@@ -17,7 +17,8 @@ var db = mongoose.connect(config.db, function(err){
 //SCHEMAS
 
 //  var schemaName = require('../server/models/modelName.js)
-
+var usuarioSchema = require('../models/usuario.js');
 //Modelos
 
 // exports.modelName = db.model('colectionName', schemaName)
+exports.Usuario = db.model('Usuario', usuarioSchema);

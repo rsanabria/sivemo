@@ -1,24 +1,30 @@
 {
-    "name" : "mean",
-    "description" : "Estructura Básica para usar MEAN",
-    "version"   : "0.0.1",
-    "private"   : "false",
-    "author"    : "Rodrigo Sanabria <r.sanabriadc@gmail.com>",
-    "contributors" : [{
-        "name" : "Julio Romero",
-        "mail" : "-"
-    }],
-    "repository" : {
-        "type" : "git",
-        "url"  : "https://github.com/rsanabria/mean.git"
-    },
-    "dependencies" : {
-        "bcrypt-nodejs": "*",
-        "body-parser": "^1.2.0",
-        "cookie-parser": "^1.1.0",
-        "express": "^4.2.0",
-        "method-override": "^1.0.0",
-        "mongoose": "^3.8.8",
-        "morgan": "^1.0.0"
+  "name": "mean",
+  "description": "Estructura Básica para usar MEAN",
+  "version": "0.0.1",
+  "private": "false",
+  "author": "Rodrigo Sanabria <r.sanabriadc@gmail.com>",
+  "contributors": [
+    {
+      "name": "Julio Romero",
+      "mail": "-"
     }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rsanabria/mean.git"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "*",
+    "body-parser": "^1.2.0",
+    "cookie-parser": "^1.1.0",
+    "express": "^4.2.0",
+    "express-session": "~1.0.0",
+    "jsonwebtoken": "^5.0.0",
+    "method-override": "^1.0.0",
+    "mongoose": "^3.8.8",
+    "morgan": "^1.0.0",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6"
+  }
 }
