@@ -12,6 +12,7 @@ module.exports = function (app){
         .get('/setup', function(req, res) {
         var usuario = new Usuario( {
             nombre : "Rodrigo Sanabria",
+            usuario : 'rodrigosanabria',
             password : "1403"
         });
         usuario.save( function(err) {

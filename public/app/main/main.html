@@ -1,4 +1,13 @@
-<h1>Mean App</h1>
-<h2>{{vm.hola.mensaje}}</h2>
-<h3>{{vm.sivemo}}</h3>
-<button ng-click="vm.logIn()">Log in</button>
+<h1>SIVEMO</h1>
+
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1"Usuario</label>
+    <input type="text" class="form-control" ng-model="vm.formData.usuario" placeholder="usuario">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" ng-model="vm.formData.password" placeholder="password">
+  </div>
+  <button type="submit" class="btn btn-default"ng-click="vm.logIn()">Iniciar Sesión</button>
+</form>

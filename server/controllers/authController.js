@@ -8,7 +8,7 @@ exports.init = function(expressApp) {
     return exports;
 }
 exports.isLogged = function (req, res) {
-    res.json({success: true, usuario: req.decoded.usuario, message: 'Probando la autenticacion'});
+    res.json({success: true, usuario: req.decoded.usuario, message: 'Hola' + req.decoded.usuario});
     
 };
 exports.usuarios = function (req, res) {
@@ -20,7 +20,7 @@ exports.usuarios = function (req, res) {
     });
 };
 exports.authenticate = function (req, res) {
-    var query =  Usuario.findOne({ nombre: req.body.nombre});
+    var query =  Usuario.findOne({ usuario: req.body.usuario});
     query.exec(revisarAuth);
     
     function revisarAuth(err, user) {
@@ -35,7 +35,7 @@ exports.authenticate = function (req, res) {
                 res.json({success: false, message: 'Error de Contraseña'});
             } else {
                 // Creacion del token
-                var token = jwt.sign({usuario : user.nombre, password : user.password}, "sivemo"/*app.get('superSecret')*/, {expiresInMinutes: 1});
+                var token = jwt.sign({usuario : user.usuario, nombre: user.nombre}, "sivemo"/*app.get('superSecret')*/, {expiresInMinutes: 1});
                 res.json({
                     success: true,
                     message: "Bienvenido "+ user.nombre,
@@ -45,6 +45,16 @@ exports.authenticate = function (req, res) {
             }
         }
     }
+}
+exports.signUp = function (req, res) {
+  var usuario = new Usuario(req.body);
+  usuario.save(function (err) {
+    if (err) {
+      res.json({success : false, message : "No se pudo crear el usuario"});
+    } else {
+      res.send(usuario);
+    }
+  })
 }
 
 exports.middleware = function(req, res, next) {

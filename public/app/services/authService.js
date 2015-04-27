@@ -4,15 +4,16 @@
     angular
         .module('app.services')
         .factory('authService',  authService);
-  authService.$inject = ['$window','$http', 'logger'];
+  authService.$inject = ['$window', '$location', '$http', 'logger'];
     
 
-    function authService($window, $http, logger) {
-      var checkLogIn = false;
+    function authService($window, $location, $http, logger) {
+      var check;
         var service = {
             login : login,
             isLogged: isLogged,
-            checkLogIn: checkLogIn
+            logOut : logOut,
+            checkLogIn: getCheckLogIn
         };
 
         return service;
@@ -23,6 +24,7 @@
           if (success) {
             $window.sessionStorage.token = res.data.token;
             logger.success(res.data.message);
+            $location.url('/todo');
           } else {
             logger.warning(res.data.message);
           }
@@ -33,18 +35,30 @@
         $http.defaults.headers.common['X-Access-Token'] =  $window.sessionStorage.token;
          return $http.get('/auth/secure').then(function(res) {
           var success = res.data.success;
+           console.log("success: "+ success);
           if (success) {
-             var checkLogIn = false;
+            console.log("success: "+ success);
+              setCheckLogIn(true);
           } else {
             logger.error(res.data.message);
-              var checkLogIn = false;
+              setCheckLogIn(false);
           }
         }).catch( function(err){
           logger.error(err.message);
-            var checkLogIn = false;;
+            setCheckLogIn(false);
         });
       }
-
+      function logOut() {
+        delete $window.sessionStorage.token;
+        logger.success("Sesión Cerrada");
+        $location.path('/');
+      }
+      function getCheckLogIn() {
+        return check;
+      }
+      function setCheckLogIn(checkValue) {
+        check = checkValue;
+      }
 
  /*       function getHola() {
             return $http.get('/holaMundo')
