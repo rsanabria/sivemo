@@ -1,19 +1,19 @@
 var express = require('express');
-var Usuario = require('../config/db.js').Usuario;
+var auth = require('../controllers/authController.js');
 var authRoutes = express.Router();
 
 module.exports = function (app) {
+    auth.init(app);
     
     authRoutes
-        .get('/', function(req,res) {
-            res.json( {message: 'Probando la autenticacion'});
-    })
-        .get('/usuarios', function(req, res) {
-            Usuario.find({}, function (err, usuarios) {
-                if (err)
-                    console.log(err);
-                res.json(usuarios);
-            });
-        });
+        .use('/secure',auth.middleware)
+        .get('/secure/', auth.isLogged)
+        .get('/secure/usuarios', auth.usuarios)
+        .post('/authenticate',auth.authenticate);
     app.use('/auth', authRoutes);
+    
+    
+
 }
+
+

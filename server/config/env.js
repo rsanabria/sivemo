@@ -5,7 +5,7 @@ module.exports = {
     dev : {
         db : 'mongodb://admin:sivemo14@ds061741.mongolab.com:61741/sivemo',
         roothPath : roothPath,
-        secret : 'sivemo1403',
+        secret : 'sivemo14031992',
         port: process.env.PORT || 8080
     }
 

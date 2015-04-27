@@ -13,7 +13,7 @@
   
   function routes() {
   return [
-    {url:'/todo', config : {templateUrl : 'app/todo/todo.html', controller:'TodoCtrl', controllerAs:'vm', title:'todo' }}
+    {url:'/todo', config : {templateUrl : 'app/todo/todo.html', controller:'TodoCtrl', controllerAs:'vm', title:'todo', secure: true }}
   ]
   }
 })();

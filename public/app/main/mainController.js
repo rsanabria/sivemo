@@ -5,11 +5,12 @@
         .module('app.main')
         .controller('MainCtrl', MainCtrl);
 
-    MainCtrl.$inject = ['dataService','logger'];
+    MainCtrl.$inject = ['dataService','authService', 'logger'];
 
-    function MainCtrl(dataService, logger) {
+    function MainCtrl(dataService, authService, logger ) {
       var vm = this;
     vm.sivemo = "Hola Sivemo";
+      vm.logIn = logIn;
       init();
       
       function init() {
@@ -24,7 +25,9 @@
           return vm.hola;
         });
       }
-
+      function logIn() {
+        authService.isLogged();
+      }
         
 
     }

@@ -3,9 +3,11 @@
   var core = angular.module('app.core');
   core.config(toastrconfig);
   core.config(configure);
+  core.run(rutaSeguras);
   
   toastrconfig.$inject = ['toastr'];
   configure.$inject = ['$routeProvider', 'routeHelperProvider'];
+  rutaSeguras.$inject = ['$window', '$rootScope', '$location', 'logger', 'authService'];
   
   function toastrconfig(toastr) {
     toastr.options.timeOut = 4000;
@@ -14,5 +16,21 @@
   function configure($routeProvider,routeHelperProvider) {
     routeHelperProvider.config.$routeProvider = $routeProvider;
   }
+  
+  function rutaSeguras($window, $rootScope,$location, logger, authService) {
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+      if( next.secure) {
+        authService.isLogged();
+        if (!authService.checkLogIn) {
+          $location.url('/');
+          event.preventDefault();
+        }
+      }
+          //Look at the next parameter value to determine if a redirect is needed        
+  });
+
+  }
+  
+  
 
 })();
