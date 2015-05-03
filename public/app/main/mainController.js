@@ -12,13 +12,24 @@
       vm.formData = {}
     vm.sivemo = "Hola Sivemo";
       vm.logIn = logIn;
+      vm.logOut = logOut;
+      vm.isLogged = isLogged;
       init();
       
       function init() {
+        isLogged();
       }
       
       function logIn() {
         authService.login(vm.formData);
+      }
+        function logOut() {
+            authService.logOut();
+            
+        }
+      function isLogged() {
+        //authService.isLogged();
+       return authService.checkLogIn();
       }
         
 

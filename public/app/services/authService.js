@@ -7,7 +7,7 @@
   authService.$inject = ['$window', '$location', '$http', 'logger'];
     
 
-    function authService($window, $location, $http, logger) {
+    function authService( $window, $location, $http, logger) {
       var check;
         var service = {
             login : login,
@@ -40,18 +40,21 @@
             console.log("success: "+ success);
               setCheckLogIn(true);
           } else {
+              delete $window.sessionStorage.token;
             logger.error(res.data.message);
               setCheckLogIn(false);
           }
         }).catch( function(err){
           logger.error(err.message);
+            delete $window.sessionStorage.token;
             setCheckLogIn(false);
         });
       }
       function logOut() {
         delete $window.sessionStorage.token;
         logger.success("Sesión Cerrada");
-        $location.path('/');
+        $window.location.href = "/";
+        
       }
       function getCheckLogIn() {
         return check;
