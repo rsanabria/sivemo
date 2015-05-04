@@ -17,7 +17,8 @@
       init();
       
       function init() {
-        isLogged();
+        authService.checkLogIn();
+        //isLogged();
       }
       
       function logIn() {

@@ -24,7 +24,7 @@
           if (success) {
             $window.sessionStorage.token = res.data.token;
             logger.success(res.data.message);
-            $location.url('/todo');
+            $location.url('/eventos');
           } else {
             logger.warning(res.data.message);
           }
@@ -35,9 +35,9 @@
         $http.defaults.headers.common['X-Access-Token'] =  $window.sessionStorage.token;
          return $http.get('/auth/secure').then(function(res) {
           var success = res.data.success;
-           console.log("success: "+ success);
+           //console.log("success: "+ success);
           if (success) {
-            console.log("success: "+ success);
+            //console.log("success: "+ success);
               setCheckLogIn(true);
           } else {
               delete $window.sessionStorage.token;
@@ -45,7 +45,7 @@
               setCheckLogIn(false);
           }
         }).catch( function(err){
-          logger.error(err.message);
+          logger.error(err.data.message);
             delete $window.sessionStorage.token;
             setCheckLogIn(false);
         });
@@ -53,7 +53,9 @@
       function logOut() {
         delete $window.sessionStorage.token;
         logger.success("Sesión Cerrada");
-        $window.location.href = "/";
+        setCheckLogIn(false);
+        $location.url("/");
+        //$window.location.href = "/";
         
       }
       function getCheckLogIn() {

@@ -6,7 +6,7 @@
           'app.core',
           'app.services',
           'app.main',
-          'app.todo'
+          'app.ventas'
     ]);
   
 })();

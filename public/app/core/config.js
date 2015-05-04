@@ -21,15 +21,18 @@
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
       if( next.secure) {
         authService.isLogged().then(function(){
-           console.log(authService.checkLogIn());
-                 if (!authService.checkLogIn()) {
-          $location.url('/');
-          event.preventDefault();
-        }
+          
+           //console.log(authService.checkLogIn());
+          if (authService.checkLogIn() != true) {
+            $location.url("/");
+            //$window.location.href = "/";
+            event.preventDefault();
+          }
         });
-       
- 
-      }
+       } else if (!next.secure && authService.checkLogIn() == true) {
+         console.log("prueba " + authService.checkLogIn()); 
+         event.preventDefault();
+        }
           //Look at the next parameter value to determine if a redirect is needed        
   });
 

@@ -1,13 +1,21 @@
-<h1>SIVEMO</h1>
-
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1"Usuario</label>
-    <input type="text" class="form-control" ng-model="vm.formData.usuario" placeholder="usuario">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" ng-model="vm.formData.password" placeholder="password">
-  </div>
-  <button type="submit" class="btn btn-default"ng-click="vm.logIn()">Iniciar Sesión</button>
-</form>
+ <link href="app/main/main.css" rel="stylesheet"/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 login">
+      <h1>SIVEMO</h1>
+      <form>
+        <div class="form-group">
+          <!--<label> Usuario</label>-->
+          <input type="text" class="form-control" ng-model="vm.formData.usuario" placeholder="Usuario">
+        </div>
+        <div class="form-group">
+          <!--<label>Password</label>-->
+          <input type="password" class="form-control" ng-model="vm.formData.password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="vm.logIn()">Iniciar Sesión</button>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+    </div>
+</div>
