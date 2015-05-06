@@ -31,6 +31,11 @@ module.exports = function () {
 
     require('../routes/mainRoutes.js')(app);
     require('../routes/authRoutes.js')(app);
+    
+    app.route('/*')
+     .get( function html5 (req, res) {
+      res.sendFile('index.html', {'root' : './public'});
+    });
 
     return app;
 

@@ -13,7 +13,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="evento in vm.eventos">
-          <td>{{evento.nombre}}</td>
+          <td><a href="/ventas/{{evento._id}}">{{evento.nombre}}</a></td>
           <td>{{evento.lugares}}</td>
           </tr>
         </tbody>

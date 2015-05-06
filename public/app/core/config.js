@@ -3,11 +3,13 @@
   var core = angular.module('app.core');
   core.config(toastrconfig);
   core.config(configure);
+  core.config(htmlMode);
   core.run(rutaSeguras);
   
   toastrconfig.$inject = ['toastr'];
   configure.$inject = ['$routeProvider', 'routeHelperProvider'];
   rutaSeguras.$inject = ['$window', '$rootScope', '$location', 'logger', 'authService'];
+  htmlMode.$inject = ['$locationProvider'];
   
   function toastrconfig(toastr) {
     toastr.options.timeOut = 4000;
@@ -36,6 +38,9 @@
           //Look at the next parameter value to determine if a redirect is needed        
   });
 
+  }
+  function htmlMode($locationProvider) {
+    $locationProvider.html5Mode(true).hashPrefix('');
   }
   
   
