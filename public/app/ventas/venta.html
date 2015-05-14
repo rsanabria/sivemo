@@ -1,0 +1,38 @@
+<h1>{{vm.evento.nombre}}</h1>
+
+<div class="row">
+<div class="col-md-6">
+<form>
+  
+      <div class="form-group">
+        <h2>Cliente</h2>
+        <!--<label> Usuario</label>-->
+        <input type="text" class="form-control" ng-model="vm.formData.nombre" placeholder="Nombre">
+      </div>
+      <div class="form-group">
+        <!--<label>Password</label>-->
+        <input type="text" class="form-control" ng-model="vm.formData.correo" placeholder="Email">
+        
+        
+      </div>
+</form>
+  </div>
+  
+<div class="col-md-6">
+<form>
+  
+      <div class="form-group">
+        <h2>Boletos</h2>
+        <!--<label> Usuario</label>-->
+        <input type="number" class="form-control" ng-model="vm.formData.numBoletos" placeholder="Cantidad de Boletos">
+      </div>
+      <div class="form-group">
+        <!--<label>Password</label>-->
+        {{vm.formData.numBoletos * vm.evento.precio}}
+        
+        
+      </div>
+      <button type="submit" class="btn btn-primary" ng-click="vm.ticket()">Vender</button>
+</form>
+  </div>
+  </div>

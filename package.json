@@ -24,6 +24,7 @@
     "method-override": "^1.0.0",
     "mongoose": "^3.8.8",
     "morgan": "^1.0.0",
+    "mysql": "felixge/node-mysql",
     "passport": "~0.1.17",
     "passport-local": "~0.1.6"
   }

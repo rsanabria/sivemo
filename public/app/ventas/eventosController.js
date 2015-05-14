@@ -10,30 +10,13 @@
     function EventosCtrl(dataService, logger) {
       var vm = this;
         vm.listaTodo = [];
-        vm.agregarTodo = agregarTodo;
-        vm.eliminarTodo = eliminarTodo;
-        vm.eventos = [{"nombre" : "Rolling Stones", "lugares": 15},
-                     {"nombre" : "The Killers", "lugares": 150},
-                      {"nombre" : "Opera", "lugares": 1005}
+        vm.eventos = [{"nombre" : "Rolling Stones", "lugares": 15, "_id" : "5467A", "precio": 500},
+                     {"nombre" : "The Killers", "lugares": 150, "_id" : "5467B", "precio": 1500 },
+                      {"nombre" : "Opera", "lugares": 1005, "_id" : "5467AC", "precio": 200}
                      ]
       init();
       
       function init() {
       }
-        
-    function agregarTodo (todo) {
-        vm.listaTodo.push(todo);
-        vm.todo = "";
-    
-    }
-        
-    function eliminarTodo ( todo) {
-        var indice = vm.listaTodo.indexOf(todo);
-        vm.listaTodo.splice(indice,1);
-    }
-      
-
-        
-
     }
 })();

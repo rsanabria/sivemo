@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    mysql    = require('mysql'),
     env      = process.env.NODE_ENV || 'dev'
     config   = require('./env.js')[env];
 
@@ -13,6 +14,21 @@ var db = mongoose.connect(config.db, function(err){
         console.log("Conexión a MongoDB!");
     }
 });
+
+//MYSQL
+var conMysql = mysql.createConnection(config.mysql); 
+
+  conMysql.query('SELECT * FROM agenda_eventos', function (err, rows) {
+  if (err) {
+    console.log(' no se pudo conectar a MYSQL!');
+    console.log(err.code);
+    
+  } else {
+    console.log("Conexión a Mysql");
+    console.log(rows[0]);
+  }
+});
+//conMysql.query
 
 //SCHEMAS
 

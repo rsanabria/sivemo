@@ -8,7 +8,7 @@
   
   toastrconfig.$inject = ['toastr'];
   configure.$inject = ['$routeProvider', 'routeHelperProvider'];
-  rutaSeguras.$inject = ['$window', '$rootScope', '$location', 'logger', 'authService'];
+  rutaSeguras.$inject = [ '$rootScope', '$location', 'logger', 'authService'];
   htmlMode.$inject = ['$locationProvider'];
   
   function toastrconfig(toastr) {
@@ -19,7 +19,7 @@
     routeHelperProvider.config.$routeProvider = $routeProvider;
   }
   
-  function rutaSeguras($window, $rootScope,$location, logger, authService) {
+  function rutaSeguras($rootScope,$location, logger, authService) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
       if( next.secure) {
         authService.isLogged().then(function(){
