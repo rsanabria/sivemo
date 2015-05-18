@@ -32,6 +32,9 @@
         //authService.isLogged();
        return authService.checkLogIn();
       }
+      function isAdmin() {
+        return authService.checkIsAdmin();
+      }
         
 
     }

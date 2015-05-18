@@ -39,6 +39,7 @@ exports.authenticate = function (req, res) {
                 res.json({
                     success: true,
                     message: "Bienvenido "+ user.nombre,
+                    isAdmin: user.isAdmin,
                     token : token
                 })
                 

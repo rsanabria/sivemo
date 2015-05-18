@@ -18,7 +18,7 @@ var db = mongoose.connect(config.db, function(err){
 //MYSQL
 var conMysql = mysql.createConnection(config.mysql); 
 
-  conMysql.query('SELECT * FROM agenda_eventos', function (err, rows) {
+/*  conMysql.query('SELECT * FROM agenda_eventos', function (err, rows) {
   if (err) {
     console.log(' no se pudo conectar a MYSQL!');
     console.log(err.code);
@@ -27,7 +27,7 @@ var conMysql = mysql.createConnection(config.mysql);
     console.log("Conexión a Mysql");
     console.log(rows[0]);
   }
-});
+});*/
 //conMysql.query
 
 //SCHEMAS
@@ -38,3 +38,4 @@ var usuarioSchema = require('../models/usuario.js');
 
 // exports.modelName = db.model('colectionName', schemaName)
 exports.Usuario = db.model('Usuario', usuarioSchema);
+exports.Eventos = conMysql;

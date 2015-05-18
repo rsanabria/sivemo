@@ -1,3 +1,4 @@
+<div class="container">
 <h1>{{vm.evento.nombre}}</h1>
 
 <div class="row">
@@ -5,7 +6,7 @@
 <form>
   
       <div class="form-group">
-        <h2>Cliente</h2>
+        <h3>Datos del Cliente</h3>
         <!--<label> Usuario</label>-->
         <input type="text" class="form-control" ng-model="vm.formData.nombre" placeholder="Nombre">
       </div>
@@ -18,21 +19,22 @@
 </form>
   </div>
   
-<div class="col-md-6">
+<div class="col-md-3">
 <form>
   
       <div class="form-group">
-        <h2>Boletos</h2>
+        <h3> Número de Boletos</h3>
         <!--<label> Usuario</label>-->
         <input type="number" class="form-control" ng-model="vm.formData.numBoletos" placeholder="Cantidad de Boletos">
       </div>
       <div class="form-group">
         <!--<label>Password</label>-->
-        {{vm.formData.numBoletos * vm.evento.precio}}
+        <b>TOTAL</b> &#36;{{vm.formData.numBoletos * vm.evento.precio}}
         
         
       </div>
       <button type="submit" class="btn btn-primary" ng-click="vm.ticket()">Vender</button>
 </form>
+  </div>
   </div>
   </div>

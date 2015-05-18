@@ -29,7 +29,7 @@ module.exports = function () {
     
     //jwt
 
-    require('../routes/mainRoutes.js')(app);
+    require('../routes/apiRoutes.js')(app);
     require('../routes/authRoutes.js')(app);
     
     app.route('/*')

@@ -11,7 +11,7 @@
       var vm = this;
       var eventoBD = {"nombre" : "Rolling Stones","lugaresDisponibles": 50, "precio":500};
       vm.formData = {};
-      vm.formData.numBoletos = 0;
+      vm.formData.numBoletos = 1;
       vm.evento = {};
       vm.evento.nombre = eventoBD.nombre;
       vm.evento.lugares = eventoBD.lugaresDisponibles;

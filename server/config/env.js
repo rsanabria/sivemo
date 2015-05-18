@@ -8,7 +8,8 @@ module.exports = {
         host : 'db4free.net',
         user : 'siadev1',
         password : 'siadev1',
-        database : 'siadev1'
+        database : 'siadev1',
+        charset : 'utf8_general_ci'
         },
         roothPath : roothPath,
         secret : 'sivemo14031992',

@@ -13,7 +13,8 @@
             login : login,
             isLogged: isLogged,
             logOut : logOut,
-            checkLogIn: getCheckLogIn
+            checkLogIn: getCheckLogIn,
+          checkIsAdmin : checkIsAdmin
         };
 
         return service;
@@ -23,6 +24,7 @@
           var success = res.data.success;
           if (success) {
             $window.sessionStorage.token = res.data.token;
+            $window.sessionStorage.isAdmin = res.data.isAdmin;
             logger.success(res.data.message);
             $location.url('/eventos');
           } else {
@@ -52,6 +54,7 @@
       }
       function logOut() {
         delete $window.sessionStorage.token;
+        delete $window.sessionStorage.isAdmin;
         logger.success("Sesión Cerrada");
         setCheckLogIn(false);
         $location.url("/");
@@ -63,6 +66,9 @@
       }
       function setCheckLogIn(checkValue) {
         check = checkValue;
+      }
+      function checkIsAdmin(){
+        return $window.sessionStorage.isAdmin;
       }
 
  /*       function getHola() {
