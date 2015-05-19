@@ -35,11 +35,12 @@ exports.authenticate = function (req, res) {
                 res.json({success: false, message: 'Error de Contraseña'});
             } else {
                 // Creacion del token
-                var token = jwt.sign({usuario : user.usuario, nombre: user.nombre}, "sivemo"/*app.get('superSecret')*/, {expiresInMinutes: 10});
+                var token = jwt.sign({usuario : user.usuario, nombre: user.nombre}, "sivemo"/*app.get('superSecret')*/, {expiresInMinutes: 60});
                 res.json({
                     success: true,
                     message: "Bienvenido "+ user.nombre,
                     isAdmin: user.isAdmin,
+                    _id : user._id,
                     token : token
                 })
                 

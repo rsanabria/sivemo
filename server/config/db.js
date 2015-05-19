@@ -34,8 +34,10 @@ var conMysql = mysql.createConnection(config.mysql);
 
 //  var schemaName = require('../server/models/modelName.js)
 var usuarioSchema = require('../models/usuario.js');
+var ventasSchema = require('../models/ventas.js');
 //Modelos
 
 // exports.modelName = db.model('colectionName', schemaName)
 exports.Usuario = db.model('Usuario', usuarioSchema);
 exports.Eventos = conMysql;
+exports.Ventas = db.model('Ventas',ventasSchema);

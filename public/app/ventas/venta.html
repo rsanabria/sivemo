@@ -1,3 +1,4 @@
+<link href="app/ventas/ventas.css" rel="stylesheet"/>
 <div class="container">
 <h1>{{vm.evento.nombre}}</h1>
 
@@ -13,10 +14,27 @@
       <div class="form-group">
         <!--<label>Password</label>-->
         <input type="text" class="form-control" ng-model="vm.formData.correo" placeholder="Email">
-        
-        
       </div>
+  <div class="form-inline">
+    <div class="form-group">
+       <label>Tarjeta</label>
+        <input type="checkbox" class="form-control checkbox" ng-model="vm.tipoTarjeta" >
+        </div>
+  </div>
 </form>
+  <div ng-if="vm.tipoTarjeta == true" class="form-control">
+        <div class="form-group">
+        <!--<label> Usuario</label>-->
+        <input type="text" class="form-control" ng-model="vm.formDataDummy.numTarjeta" placeholder="Num Tarjeta">
+      </div>
+            <div class="form-group">
+        <!--<label> Usuario</label>-->
+        <input type="text" class="form-control" ng-model="vm.formDataDummy.bancoTarjeta" placeholder="Nombre del Banco">
+      </div>
+  
+  </div>
+
+
   </div>
   
 <div class="col-md-3">
@@ -25,11 +43,11 @@
       <div class="form-group">
         <h3> Número de Boletos</h3>
         <!--<label> Usuario</label>-->
-        <input type="number" class="form-control" ng-model="vm.formData.numBoletos" placeholder="Cantidad de Boletos">
+        <input type="number" class="form-control" ng-model="vm.formData.num_boletos" placeholder="Cantidad de Boletos">
       </div>
       <div class="form-group">
         <!--<label>Password</label>-->
-        <b>TOTAL</b> &#36;{{vm.formData.numBoletos * vm.evento.precio}}
+        <b>TOTAL</b> &#36;{{vm.formData.num_boletos * vm.evento.precio}}
         
         
       </div>

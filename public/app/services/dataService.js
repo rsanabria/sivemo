@@ -10,7 +10,9 @@
     function dataService($http,logger) {
         var service = {
             getHola: getHola,
-          getEventos : getEventos
+          getEventos : getEventos,
+          getEvento : getEvento,
+          generarVenta : generarVenta
         };
 
         return service;
@@ -34,5 +36,25 @@
               logger.error(err.data);
             });
         }
+      
+      function getEvento(id) {
+        return $http.get('/api/getEvento/' + id)
+            .then( function(response) {
+              return response.data;
+            })
+            .catch( function(err) {
+              logger.error(err.data);
+            });
+      }
+      
+      function generarVenta(data) {
+        return $http.post('/api/generarVenta',data)
+          .then(function(response) {
+          return response.data;
+        })
+        .catch( function(err) {
+          logger.error(err.data);
+        });
+      }
     }
 })();

@@ -12,7 +12,6 @@
         vm.listaTodo = [];
       vm.eventos = [];
         dataService.getEventos().then(function(data){
-          console.log(data[0]);
           vm.eventos = data;
         });
       init();

@@ -14,6 +14,7 @@
       vm.logIn = logIn;
       vm.logOut = logOut;
       vm.isLogged = isLogged;
+      vm.isAdmin = isAdmin;
       init();
       
       function init() {

@@ -8,13 +8,14 @@
     
 
     function authService( $window, $location, $http, logger) {
-      var check;
+      var check,isAdmin,user_id;
         var service = {
             login : login,
             isLogged: isLogged,
             logOut : logOut,
             checkLogIn: getCheckLogIn,
-          checkIsAdmin : checkIsAdmin
+          checkIsAdmin : checkIsAdmin,
+          getUserId : getUserId
         };
 
         return service;
@@ -24,7 +25,8 @@
           var success = res.data.success;
           if (success) {
             $window.sessionStorage.token = res.data.token;
-            $window.sessionStorage.isAdmin = res.data.isAdmin;
+            setIsAdmin(res.data.isAdmin);
+            setUserId(res.data._id);
             logger.success(res.data.message);
             $location.url('/eventos');
           } else {
@@ -54,7 +56,8 @@
       }
       function logOut() {
         delete $window.sessionStorage.token;
-        delete $window.sessionStorage.isAdmin;
+        setIsAdmin(false);
+        //delete $window.sessionStorage.isAdmin;
         logger.success("Sesión Cerrada");
         setCheckLogIn(false);
         $location.url("/");
@@ -67,8 +70,18 @@
       function setCheckLogIn(checkValue) {
         check = checkValue;
       }
+      function setIsAdmin(checkValue) {
+        isAdmin = checkValue;
+      }
       function checkIsAdmin(){
-        return $window.sessionStorage.isAdmin;
+        return isAdmin;
+      }
+      
+      function setUserId(id) {
+        user_id = id;
+      }
+      function getUserId(){
+        return user_id;
       }
 
  /*       function getHola() {

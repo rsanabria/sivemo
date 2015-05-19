@@ -5,38 +5,53 @@
         .module('app.ventas')
         .controller('VentasCtrl', VentasCtrl);
 
-    VentasCtrl.$inject = ['$scope', 'dataService','logger'];
+    VentasCtrl.$inject = ['$routeParams', '$scope','authService', 'dataService','logger'];
 
-    function VentasCtrl($scope,dataService, logger) {
+    function VentasCtrl($routeParams, $scope, authService, dataService, logger) {
       var vm = this;
-      var eventoBD = {"nombre" : "Rolling Stones","lugaresDisponibles": 50, "precio":500};
+      var eventoBD = {};
+      vm.tipoTarjeta = false;
       vm.formData = {};
-      vm.formData.numBoletos = 1;
+      vm.formDataDummy = {};
+      vm.formData.num_boletos = 1;
       vm.evento = {};
-      vm.evento.nombre = eventoBD.nombre;
-      vm.evento.lugares = eventoBD.lugaresDisponibles;
-      vm.evento.precio = eventoBD.precio;
+       vm.evento.precio = 0;
       vm.ticket = ticket;
-      $scope.$watch(function() { return vm.formData.numBoletos}, revisarBoletos)
+
+      dataService.getEvento($routeParams.id).then(function(data){
+        eventoBD = data[0];
+        vm.evento.nombre = eventoBD.NOMBRE;
+        vm.evento.lugares = eventoBD.BOLETOS;
+        vm.evento.precio = eventoBD.PRECIO;
+      });
+      
+      $scope.$watch(function() { return vm.formData.num_boletos}, revisarBoletos)
                       
       init();
       
       function init() {
-
+        console.log(authService.getUserId())
+        vm.formData.vendedor = authService.getUserId();
       }
       
-      function ticket(){
-        alert("Confirmar Venta?");
-        logger.info(vm.formData.nombre + "\n" + vm.formData.correo + "\n" + vm.formData.numBoletos);
-        vm.formData = {};
-      }
       
       function revisarBoletos (current, original) {
-        if ( current > eventoBD.lugaresDisponibles){
+        if ( current > eventoBD.BOLETOS){
           alert("No hay tantos lugares");
-          vm.formData.numBoletos = current-(current-eventoBD.lugaresDisponibles);
+          vm.formData.num_boletos = current-(current-eventoBD.BOLETOS);
         }
       }
+      
+      
+      function ticket() {
+        vm.formData.fecha_venta = Date.now();
+        dataService.generarVenta(vm.formData).then(function(data){
+          logger.info(data.message);
+          vm.formData = {}
+        });
+      }
+      
+
       
      
     }

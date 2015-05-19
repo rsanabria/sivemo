@@ -9,8 +9,10 @@ module.exports = function (app){
 
 	apiRouter
   
-    .get('/getEventos', api.getEventos);
-
+    .get('/getEventos', api.getEventos)
+    .get('/getEvento/:id',api.getEvento)
+    .get('/updateEvento', api.updateEvento)
+    .post('/generarVenta', api.generarVenta);
 
     
     app.use('/api', apiRouter);
