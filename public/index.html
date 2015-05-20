@@ -26,8 +26,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <ul  ng-if="vm.isLogged() == true" class="nav navbar-nav navbar-right">
-        <li ng-if="vm.isAdmin() == true"><a href="/vendedor/new">Nuevo Vendedor</a></li>
-        <li ng-if="vm.isAdmin() == true"><a href="/reporte">Reportes</a></li>
+        <li ng-if="vm.isAdmin() == 'true'"><a href="/vendedor/new">Nuevo Vendedor</a></li>
+        <li ng-if="vm.isAdmin() == 'true'"><a href="/reportes">Reportes</a></li>
         <li><a href="/eventos">Eventos</a></li>
         <li><a ng-click="vm.logOut()" >Cerrar Sesión</a></li>
       </ul>
@@ -72,6 +72,7 @@
         <script src="app/ventas/config.routes.js"></script>
         <script src="app/ventas/eventosController.js"></script>
         <script src="app/ventas/ventasController.js"></script>
+        <script src="app/ventas/reportesController.js"></script>
 
      
       

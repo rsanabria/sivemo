@@ -13,7 +13,9 @@
           getEventos : getEventos,
           getEvento : getEvento,
           venderEvento : venderEvento,
-          generarVenta : generarVenta
+          generarVenta : generarVenta,
+          getFechas : getFechas,
+          generarReporte : generarReporte
         };
 
         return service;
@@ -65,6 +67,20 @@
         .catch( function(err) {
           logger.error(err.data.message);
         });
+      }
+      
+      function getFechas(){
+        return $http.get('/api/getFechas')
+          .success(function(response){
+          return response.data;
+        });
+      }
+      
+      function generarReporte(fecha){
+        return $http.get('/api/reporte?fecha='+fecha)
+          .success(function(response){
+          return response.data;
+        })
       }
     }
 })();

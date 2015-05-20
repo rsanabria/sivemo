@@ -14,7 +14,8 @@ module.exports = function (app, transporter){
     .get('/getEvento/:id',api.getEvento)
     .post('/eventoVendido', api.eventoVendido)
     .post('/generarVenta', api.generarVenta)
-    .get('/getFechas', api.getFechas);
+    .get('/getFechas', api.getFechas)
+    .get('/reporte', api.reporte)
 
     
     app.use('/api', apiRouter);

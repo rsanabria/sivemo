@@ -1,0 +1,36 @@
+<link href="app/ventas/reportes.css" rel="stylesheet"/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <h1>Reportes</h1>
+      <div class="form-group">
+      <label>Fecha </label>
+      <select class="selectpicker"ng-model="vm.fecha" ng-options="f as f.toString().substr(0,16) for f in vm.fechas">
+    </select>
+        </div>
+     
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            
+            <th class="tcenter">Vendedor</th>
+            <th class="tcenter">Numero De Boletos Vendidos</th>
+              <th class="tcenter">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="reporte in vm.reportes">
+          <td>{{reporte.nombre}}</td>
+          <td class="tcenter">{{reporte.numBoletos}}</td>
+          <td class="tcenter">&#36; {{reporte.totalVendido}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-3"></div>
+  
+  </div>  
+    
+
+</div>

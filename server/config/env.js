@@ -24,3 +24,7 @@ module.exports = {
     }
 
 }
+
+/*
+conectar('db4free.net', 'siadev1', 'siadev1', 'siadev1');
+function conectar($servidor, $user, $pass, $name)*/

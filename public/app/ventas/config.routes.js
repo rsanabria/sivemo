@@ -14,8 +14,8 @@
   function routes() {
   return [
     {url:'/eventos', config : {templateUrl : 'app/ventas/eventos.html', controller:'EventosCtrl', controllerAs:'vm', title:'eventos', secure: true }},
-     
-     {url:'/ventas/:id', config : {templateUrl : 'app/ventas/venta.html', controller:'VentasCtrl', controllerAs:'vm', title:'venta', secure: true }}
+     {url:'/ventas/:id', config : {templateUrl : 'app/ventas/venta.html', controller:'VentasCtrl', controllerAs:'vm', title:'venta', secure: true }},
+    {url:'/reportes', config : {templateUrl : 'app/ventas/reportes.html', controller:'ReportesCtrl', controllerAs:'vm', title:'venta', secure: true }}
   ]
   }
 })();

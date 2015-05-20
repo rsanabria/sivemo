@@ -1,7 +1,8 @@
 'use strict';
 
 var Eventos = require('../config/db.js').Eventos;
-var Ventas = require('../config/db.js').Ventas;
+var Ventas = require('../config/db.js').Ventas,
+    Usuario = require('../config/db.js').Usuario;
 var transporter;
 exports.init = function(transp) {
     transporter = transp;
@@ -63,9 +64,9 @@ exports.eventoVendido = function (req, res) {
       transporter.sendMail(mailOptions, function(error, info){
     if(error){
       console.log(error);
-    }
+    } else {
     console.log('Message sent: ' + info.response);
-
+    }
 });
     }
   });
@@ -91,5 +92,48 @@ exports.getFechas = function (req, res) {
   query.exec(function(err, fechas) {
     console.log(fechas);
     res.json(fechas);
-  })
+  });
+}
+
+exports.reporte = function (req,res) {
+  var fecha_i  =new Date(req.query.fecha);
+  fecha_i.setHours(0,0,0,0);
+  var fecha_f = new Date(fecha_i);
+  fecha_f.setHours(23,59,59,59);
+  var infoAenviar = [];
+  Ventas.aggregate([
+    {$match: {fecha_venta: {$lt: fecha_f,$gt : fecha_i }}},
+    {$group : {_id : "$vendedor", total : {$sum : "$total"}, numBoletos : {$sum : "$num_boletos"} }  }],
+        function(err, result) {
+          if(err) {
+            console.log(err);
+          } else {
+            for(var i = 0; i < result.length; i++) {
+               buscarusuario(result[i],i,result.length);
+            }
+    
+           
+
+          }
+      
+        });
+  function buscarusuario(result,i,numQueries) {
+            Usuario.findOne({_id : result._id}, "-_id nombre", function(err,usuario){
+              if(err) {
+                console.log(err);
+              }else{
+              console.log(usuario);
+              infoAenviar.push({nombre : usuario.nombre, totalVendido : result.total, numBoletos : result.numBoletos});
+              if(i == numQueries -1) {
+                enviarReportes(infoAenviar);
+              }
+            }
+            });
+
+  }
+   function enviarReportes(valores) {
+     res.json(valores);
+   }
+
+    
 }

@@ -32,8 +32,11 @@
           }
         });
        } else if (!next.secure && authService.checkLogIn() == true) {
+          $location.url("/eventos");
          console.log("prueba " + authService.checkLogIn()); 
          event.preventDefault();
+        } else{
+           $location.url("/");
         }
           //Look at the next parameter value to determine if a redirect is needed        
   });
