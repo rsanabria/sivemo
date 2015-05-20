@@ -25,6 +25,8 @@
           var success = res.data.success;
           if (success) {
             $window.sessionStorage.token = res.data.token;
+            $window.sessionStorage.isAdmin = res.data.isAdmin;
+            $window.sessionStorage._id = res.data._id;
             setIsAdmin(res.data.isAdmin);
             setUserId(res.data._id);
             logger.success(res.data.message);
@@ -57,7 +59,8 @@
       function logOut() {
         delete $window.sessionStorage.token;
         setIsAdmin(false);
-        //delete $window.sessionStorage.isAdmin;
+        delete $window.sessionStorage._id;
+        delete $window.sessionStorage.isAdmin;
         logger.success("Sesión Cerrada");
         setCheckLogIn(false);
         $location.url("/");
@@ -74,14 +77,26 @@
         isAdmin = checkValue;
       }
       function checkIsAdmin(){
-        return isAdmin;
+        if($window.sessionStorage.isAdmin != undefined) {
+          isAdmin = window.sessionStorage.isAdmin;
+          return isAdmin;
+        }else {
+          return isAdmin;
+        }
+        
       }
       
       function setUserId(id) {
         user_id = id;
       }
       function getUserId(){
-        return user_id;
+        if($window.sessionStorage._id != undefined) {
+          user_id = $window.sessionStorage._id
+          return user_id;
+        }else {
+          return user_id;
+        }
+        
       }
 
  /*       function getHola() {

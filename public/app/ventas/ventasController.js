@@ -5,14 +5,13 @@
         .module('app.ventas')
         .controller('VentasCtrl', VentasCtrl);
 
-    VentasCtrl.$inject = ['$routeParams', '$scope','authService', 'dataService','logger'];
+    VentasCtrl.$inject = ['$location', '$routeParams', '$scope','authService', 'dataService','logger'];
 
-    function VentasCtrl($routeParams, $scope, authService, dataService, logger) {
+    function VentasCtrl($location, $routeParams, $scope, authService, dataService, logger) {
       var vm = this;
       var eventoBD = {};
       vm.tipoTarjeta = false;
       vm.formData = {};
-      vm.formDataDummy = {};
       vm.formData.num_boletos = 1;
       vm.evento = {};
        vm.evento.precio = 0;
@@ -30,7 +29,6 @@
       init();
       
       function init() {
-        console.log(authService.getUserId())
         vm.formData.vendedor = authService.getUserId();
       }
       
@@ -45,9 +43,15 @@
       
       function ticket() {
         vm.formData.fecha_venta = Date.now();
-        dataService.generarVenta(vm.formData).then(function(data){
-          logger.info(data.message);
-          vm.formData = {}
+        vm.formData.nombreEvento = vm.evento.nombre;
+        vm.formData.total = vm.formData.num_boletos * vm.evento.precio ;
+        dataService.venderEvento($routeParams.id,vm.formData.num_boletos, vm.formData).then(function(data){
+          dataService.generarVenta(vm.formData).then(function(data){
+            logger.info(data.message);
+            $location.url('/eventos');
+
+          });
+         
         });
       }
       

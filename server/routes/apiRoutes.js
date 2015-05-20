@@ -5,14 +5,16 @@ var api = require('../controllers/apiController');
 var Usuario = require('../config/db.js').Usuario;
 //
 var apiRouter = express.Router();
-module.exports = function (app){
+module.exports = function (app, transporter){
 
+   api.init(transporter);
 	apiRouter
   
     .get('/getEventos', api.getEventos)
     .get('/getEvento/:id',api.getEvento)
-    .get('/updateEvento', api.updateEvento)
-    .post('/generarVenta', api.generarVenta);
+    .post('/eventoVendido', api.eventoVendido)
+    .post('/generarVenta', api.generarVenta)
+    .get('/getFechas', api.getFechas);
 
     
     app.use('/api', apiRouter);

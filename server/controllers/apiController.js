@@ -2,7 +2,16 @@
 
 var Eventos = require('../config/db.js').Eventos;
 var Ventas = require('../config/db.js').Ventas;
+var transporter;
+exports.init = function(transp) {
+    transporter = transp;
+    return exports;
+}
 
+//nodemailer
+var mailOptions = {
+    from: 'Boletos <sivemo@mail.ee>', // sender address
+};
 exports.holaMundo = function (req, res) {
     
     res.send("Hola Angular!");
@@ -35,15 +44,29 @@ exports.getEvento = function (req, res) {
   });
 }
   
-exports.updateEvento = function (req, res) {
+exports.eventoVendido = function (req, res) {
+  console.log("evento");
+  console.log(req.query);
+  console.log(req.body);
+  if(req.body.cliente) {
+  mailOptions.to  = req.body.cliente.correo;
+  mailOptions.subject = "tus boletos de " + req.body.nombreEvento;
+  mailOptions.html = "<h1>"+req.body.nombreEvento+'</h1>' + "<p>"+req.body.cliente.nombre+":</p>"+ "<p> Compraste: " + req.query.numBoletos + "Boletos, Con un total de: $"+req.body.total+"</p>" + "<p>Presenta este correo para entrar a tu evento</p>"; 
+  }
   Eventos.query('UPDATE agenda_eventos SET BOLETOS=BOLETOS-'+req.query.numBoletos+ ' WHERE ID='+req.query.id, function(err, result){
     if (err) {
       console.log('ERROR: ' + err.code);
-      res.json({success: false, message: err.code});
+       res.status(500).send({success: false, message: "hubo un problema Por favor Intentalo más tarde"});
       
     } else {
-      console.log(result);
       res.send({success: true, message: result});
+      transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+      console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+
+});
     }
   });
 }
@@ -55,9 +78,18 @@ exports.generarVenta = function (req, res) {
   venta.save(function (err) {
     if (err) {
       console.log(err);
-      res.json({success : false, message: err});
+       res.status(500).send({success: false, message: "hubo un problema Por favor Intentalo más tarde"});
     } else {
-      res.json({success: true, message: "venta guardada"});
+      res.json({success: true, message: "Boleto(s) Vendido(s)"});
     }
   });
+}
+
+exports.getFechas = function (req, res) {
+  console.log("hola");
+  var query = Ventas.find({}, 'fecha_venta');
+  query.exec(function(err, fechas) {
+    console.log(fechas);
+    res.json(fechas);
+  })
 }

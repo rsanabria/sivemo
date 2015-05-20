@@ -27,8 +27,8 @@
 
       <ul  ng-if="vm.isLogged() == true" class="nav navbar-nav navbar-right">
         <li ng-if="vm.isAdmin() == true"><a href="/vendedor/new">Nuevo Vendedor</a></li>
-        <li ng-if="vm.isAdmin() == true"><a href="/vendedor/lista">Empleados</a></li>
-        <li><a href="/ventas">Ventas</a></li>
+        <li ng-if="vm.isAdmin() == true"><a href="/reporte">Reportes</a></li>
+        <li><a href="/eventos">Eventos</a></li>
         <li><a ng-click="vm.logOut()" >Cerrar Sesión</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

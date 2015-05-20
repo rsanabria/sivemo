@@ -12,6 +12,7 @@
             getHola: getHola,
           getEventos : getEventos,
           getEvento : getEvento,
+          venderEvento : venderEvento,
           generarVenta : generarVenta
         };
 
@@ -43,17 +44,26 @@
               return response.data;
             })
             .catch( function(err) {
-              logger.error(err.data);
+              logger.error(err.data.message);
             });
       }
-      
+      function venderEvento(id, numBoletos, infoVenta) {
+        return $http.post('/api/eventoVendido?id='+id+"&numBoletos="+numBoletos,infoVenta)
+          .success (function(response) {
+          return response.data;
+        })
+        .error(function(data){
+          console.log(data);
+          logger.error(data.message);
+        });
+      }
       function generarVenta(data) {
         return $http.post('/api/generarVenta',data)
           .then(function(response) {
           return response.data;
         })
         .catch( function(err) {
-          logger.error(err.data);
+          logger.error(err.data.message);
         });
       }
     }

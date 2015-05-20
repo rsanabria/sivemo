@@ -11,6 +11,13 @@ module.exports = {
         database : 'siadev1',
         charset : 'utf8_general_ci'
         },
+        email : {
+          service: 'mail.ee',
+          auth: {
+            user: 'sivemo@mail.ee',
+            pass: 'sivemo1@'
+    }
+        },
         roothPath : roothPath,
         secret : 'sivemo14031992',
         port: process.env.PORT || 8080

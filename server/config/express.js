@@ -7,13 +7,17 @@ var express         = require('express'),
     jsw             = require('jsonwebtoken'),
     cookieParser    = require('cookie-parser'),
     session         = require('express-session'),
+    nodemailer      = require('nodemailer'),
+    wellknown       = require('nodemailer-wellknown'),
     env             = process.env.NODE_ENV || 'dev',
     config          = require('./env.js')[env],
     db              = require('./db.js');
 
 
 module.exports = function () {
-    
+    //configuracion de Correo
+    //var config = wellknown('Gmail');
+    var transporter = nodemailer.createTransport(config.email);
     //Initialize express app
     var app = express();
     
@@ -29,7 +33,7 @@ module.exports = function () {
     
     //jwt
 
-    require('../routes/apiRoutes.js')(app);
+    require('../routes/apiRoutes.js')(app, transporter);
     require('../routes/authRoutes.js')(app);
     
     app.route('/*')
