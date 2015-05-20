@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     mysql    = require('mysql'),
-    env      = process.env.NODE_ENV || 'dev'
+    env      = process.env.NODE_ENV || 'dev',
     config   = require('./env.js')[env];
 
 
