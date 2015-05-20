@@ -13,6 +13,9 @@ module.exports = {
         },
         email : {
           service: 'mail.ee',
+              tls: {
+        rejectUnauthorized:false
+    },
           auth: {
             user: 'sivemo@mail.ee',
             pass: 'sivemo1@'
